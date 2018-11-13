@@ -1,0 +1,16 @@
+.book {
+	border: 1px solid black;
+	border-radius: 8px;
+	width: 7em;
+	height:21em;
+	display: inline-block;
+	margin: 0.1em;
+	padding:0.1em;
+}
+
+.book .book-text {
+	width: 60%;
+	margin:auto;
+	margin-top:2em;
+	height:90%;
+}
