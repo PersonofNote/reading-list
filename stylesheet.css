@@ -14,3 +14,18 @@
 	margin-top:2em;
 	height:90%;
 }
+
+.book-form {
+	display: none;
+	background: white;
+	margin: 0.2em;
+	padding:1em;
+	border: 1px solid black;
+	border-radius: 4px;
+	position: absolute;
+	z-index: 1000;
+}
+
+button {
+	border-radius: 4px;
+}
