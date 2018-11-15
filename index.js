@@ -39,7 +39,6 @@ function removeBook(id) {
     books.splice(id,1);
     render();
     console.log(books);
-    //element.parentNode.removeChild(element);
 }
 
 function toggleVisible() {
@@ -47,10 +46,10 @@ function toggleVisible() {
     div.style.display = div.style.display == "block" ? "none" : "block";
 }
 
-function toggleRead() {
-	var div = document.getElementById(this)
-	div.read = div.read == "false" ? "true" : "false";
-	console.log(div.id);
+function toggleRead(id) {
+	var el = books[id]
+	el.read = el.read == "true" ? "false" : "true";
+	console.log(el.read);
 }
 
 function addBookToLibrary() {
@@ -72,15 +71,16 @@ shelf.innerHTML = "";
 for (var i = 0; i < books.length; i++) {
  shelf.appendChild(books[i].display);
 }
-
-if (books.length > 0) {
-	el = document.getElementById("no-books")
+ if (books.length > 0) {
+	var el = document.getElementById("no-books")
 	if (el) {
 		el.parentNode.removeChild(el);
 	} else{
-		//Create the element
+	 //	Probably refactor the if-statement to go the other way
+	 //And create this if the library is ever empty
 	}
 }
+
 }
 
 
