@@ -74,6 +74,10 @@ h1 {
 	text-align:center;
 }
 
+.complete {
+	background: red;
+}
+
 .book-form {
 	display: none;
 	background: white;

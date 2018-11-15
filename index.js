@@ -49,7 +49,8 @@ function toggleRead(id) {
 	//Placeholder to check if the toggle works!
 	var element = books[id]
 	element.read = element.read == "true" ? "false" : "true";
-	console.log(element + element.read);
+	console.log(element.bookID + " " + element.read);
+	element.display.classList.add('complete');
 }
 
 function addBookToLibrary() {
@@ -77,7 +78,7 @@ for (var i = 0; i < books.length; i++) {
   		<h4 id="test">${book.title}</h4>
   		By ${book.author}</br>
   		Pages: ${book.pages}</p>
-  		<span data="${book.bookID}" read="false" class="button" onclick="toggleRead($book.bookID)">Finished</span>
+  		<span data="${book.bookID}" read="false" class="button" onclick="toggleRead(${book.bookID})">Finished</span>
   		<span class="button delete-button" data="" onclick="removeBook(${book.bookID})">🗑️</span>
   		</div>
   	</div>`
