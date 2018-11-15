@@ -1,25 +1,22 @@
-//Pretend books, obviously
-const book1 = new Book("Sample","Person",211,false);
-const book2 = new Book("Longest title ever","Person",211,false);
-const book3 = new Book("Sample","Person",211,false);
+const book1 = new Book("test", "by tester", 205, false);
 
-let books = [book1, book2,book3];
+let books = [];
 
 
 function Book(title,author,pages,read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
-  this.pagesRead = 0;
+  this.read = false;
   this.display = document.createElement('div');
   this.display.classList.add('book');
-  this.display.innerHTML = `<div> <div class="book-text">
-  		<h4>${this.title}</h4>
+  this.display.innerHTML = `<div class="book-card">
+	   <div class="book-text">
+  		<h4 id="test">${this.title}</h4>
   		By ${this.author}</br>
-  		${this.pages}</p>
-  		<button>Read</button>
-  		<button class="delete-button">Delete</button>
+  		Pages: ${this.pages}</p>
+  		<span id="${this.id}" read="false" class="button" onclick="toggleRead(this.id)">Finished</span>
+  		<span class="button delete-button" id="${this.id}" onclick="removeBook(this.id)">🗑️</span>
   		</div>
   	</div>`
 }
@@ -30,20 +27,30 @@ document.getElementById('submit').addEventListener("click", function() {
   toggleVisible();
 })
 
+
 document.getElementById('add-new').addEventListener("click", function() {
   	toggleVisible();
 })
 
 
-function removeBook() {
-    var element = document.getElementById(this.id);
-    console.log(this.id)
+function removeBook(id) {
+    var element = document.getElementById(id);
+    console.log(id);
+    books.splice(id,1);
+    render();
+    console.log(books);
     //element.parentNode.removeChild(element);
 }
 
 function toggleVisible() {
     var div = document.getElementById("book-form");
-    div.style.display = div.style.display == "none" ? "block" : "none";
+    div.style.display = div.style.display == "block" ? "none" : "block";
+}
+
+function toggleRead() {
+	var div = document.getElementById(this)
+	div.read = div.read == "false" ? "true" : "false";
+	console.log(div.id);
 }
 
 function addBookToLibrary() {
@@ -54,15 +61,25 @@ function addBookToLibrary() {
   const newBook = new Book(title, author, pages, read);
   books.push(newBook);
   newBook.id = books.indexOf(newBook);
-  console.log(newBook.id);
+  console.log("New id = " + newBook.id);
 
 }
 
 function render() {
-var shelf = document.getElementById("bookShelf");
+var shelf = document.getElementById("book-shelf");
 //Call on load and on change
+shelf.innerHTML = "";
 for (var i = 0; i < books.length; i++) {
  shelf.appendChild(books[i].display);
+}
+
+if (books.length > 0) {
+	el = document.getElementById("no-books")
+	if (el) {
+		el.parentNode.removeChild(el);
+	} else{
+		//Create the element
+	}
 }
 }
 

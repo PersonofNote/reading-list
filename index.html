@@ -6,22 +6,33 @@
   <link rel="stylesheet" href="stylesheet.css" type="text/css">
   </head>
   <body>
-  	<button id="add-new"> Add new Book </button>
+  	<h1>Reading List </h1>
+  	<div id="add-new"> Add </div>
   	<form id="book-form" class="book-form">
       <label>Title:</label><br>
-      <input type="text" name="title" id="form-title" value="" minLength="1" maxlength="20"><br>
+      <input type="text" name="title" id="form-title" value="title" minLength="1" maxlength="20"><br>
       <label>Author:</label><br>
-      <input type="text" name="author" id="form-author" value="" minLength="1" maxlength="20"><br>
+      <input type="text" name="author" id="form-author" value="author" minLength="1" maxlength="20"><br>
       <label>Pages:</label><br>
       <input type="number" name="pages" id="form-pages" value="100" min="1" max="99999"><br>
-    <input type="radio" id="yes" value="true" name="read" />
-      <label for="yes">Yes</label><br>
-      <input type="radio" id="no" value="false" name="read" />
-      <label for="no">No</label><br><br>
       <button id="submit" type="button">Submit</button>
   </form>
-  <div id="bookShelf">
+  <div id="book-shelf">
+  	<div id="no-books"><p> Looks like your list is empty. Try adding some books! </p></div>
   </div>
+<!-- This is for notes. Right now it causes the buttons
+	to also rotate 45 degrees. And I'm worried about manually correcting it both for best practice reasons and because I'll be appending the ribbon later, so if I manually rotate the buttons, they'll start out rotated and only 'correct' when I add the ribbon. Bad news.
+
+	
+  <container class="ribbon-wrapper">
+		<div class="ribbon">
+        	<div class="txt">
+            	Finished
+        	</div>
+		<div>
+		</container>
+	-->
+
   <script src="index.js"> </script>
   </body>
 </html>
