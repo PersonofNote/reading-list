@@ -46,11 +46,17 @@ function toggleVisible() {
 }
 
 function toggleRead(id) {
-	//Placeholder to check if the toggle works!
 	var element = books[id]
 	element.read = element.read == "true" ? "false" : "true";
 	console.log(element.bookID + " " + element.read);
-	element.display.classList.add('complete');
+	element.display.classList.toggle('complete');
+	var ribbon = document.createElement('div');
+	var ribbonText = document.createElement('div');
+	ribbon.classList.add('ribbon');
+	element.display.appendChild(ribbon);
+	ribbonText.classList.add('txt');
+	ribbonText.innerHTML = "Completed";
+	ribbon.appendChild(ribbonText);
 }
 
 function addBookToLibrary() {

@@ -33,6 +33,10 @@ h1 {
 	border-bottom: 2px solid darkgrey;
 }
 
+.book .button:active {
+	background: black;
+}
+
 .book:hover {
 	width:12.2em;
 	height:12.2em;
@@ -75,7 +79,7 @@ h1 {
 }
 
 .complete {
-	background: red;
+	/* Do something fancy here? */
 }
 
 .book-form {
@@ -123,11 +127,13 @@ h1 {
 
 
 .ribbon {
+	/*
   -webkit-transform: rotate(45deg); 
      -moz-transform: rotate(45deg); 
       -ms-transform: rotate(45deg); 
        -o-transform: rotate(45deg); 
-          transform: rotate(45deg); 
+          transform: rotate(45deg);
+    */ 
     border: 25px solid transparent;
     border-top: 25px solid #CF000F;
     position: relative;
