@@ -8,6 +8,8 @@ function Book(title,author,pages,read,id) {
   this.pages = pages;
   this.read = false;
   this.bookID = id;
+  this.display = document.createElement('div');
+  this.display.classList.add('book');
   /*
   this.display = document.createElement('div');
   this.display.classList.add('book');
@@ -48,8 +50,13 @@ function toggleVisible() {
 function toggleRead(id) {
 	var element = books[id]
 	element.read = element.read == "true" ? "false" : "true";
-	console.log(element.bookID + " " + element.read);
+	//Right now there's some weirdness here where it flips if you add a new element?
 	element.display.classList.toggle('complete');
+	console.log(element.bookID + " " + element.read);
+	if (element.read == true) {
+	console.log("read it!")
+	var completeText = element.display.getElementsByClassName('completed-button')
+	completeText.innerHTML = "I read this"
 	var ribbon = document.createElement('div');
 	var ribbonText = document.createElement('div');
 	ribbon.classList.add('ribbon');
@@ -57,6 +64,12 @@ function toggleRead(id) {
 	ribbonText.classList.add('txt');
 	ribbonText.innerHTML = "Completed";
 	ribbon.appendChild(ribbonText);
+	}else if (element.read==false){
+	console.log("Didn't read it")
+	var ribbon = element.display.getElementsByClassName("ribbon")
+	element.removeChild("ribbon"[0]);
+	}
+
 }
 
 function addBookToLibrary() {
@@ -77,15 +90,13 @@ shelf.innerHTML = "";
 for (var i = 0; i < books.length; i++) {
   var book = books[i];
   book.bookID = books.indexOf(book);
-  book.display = document.createElement('div');
-  book.display.classList.add('book');
   book.display.innerHTML = `<div class="book-card">
 	   <div class="book-text">
   		<h4 id="test">${book.title}</h4>
   		By ${book.author}</br>
   		Pages: ${book.pages}</p>
-  		<span data="${book.bookID}" read="false" class="button" onclick="toggleRead(${book.bookID})">Finished</span>
-  		<span class="button delete-button" data="" onclick="removeBook(${book.bookID})">🗑️</span>
+  		<span class="button completed-button" onclick="toggleRead(${book.bookID})">Finished</span>
+  		<span class="button delete-button" onclick="removeBook(${book.bookID})">🗑️</span>
   		</div>
   	</div>`
  shelf.appendChild(books[i].display);
