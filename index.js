@@ -1,3 +1,15 @@
+/*
+TODO:
+-Try an animation that shrinks the button slightly when you press it, then snaps it back up.
+-Try something a little more obvious to mark a book as "read." Not sure I'm liking the ribbon implementation at the moment,
+it's a little hacky and flat.
+-Consider doing a first-letter to upcase (except article and small words, of course) pass on the titles
+-Consider adding a property to the add-new button where if you add a new book while the
+	form is displaying, it adds the book as though it were the submit button. (I get tripped
+	up by this during testing, sometimes clicking the wrong button, and it's annoying)
+*/
+
+
 const book1 = new Book("test", "by tester", 205, false);
 
 let books = [];
@@ -52,25 +64,8 @@ function toggleRead(id) {
 	element.read = element.read == "true" ? "false" : "true";
 	//Right now there's some weirdness here where it flips if you add a new element?
 	element.display.classList.toggle('complete');
-	console.log(element.bookID + " " + element.read);
-	if (element.read == true) {
-	console.log("read it!")
-	var completeText = element.display.getElementsByClassName('completed-button')
-	completeText.innerHTML = "I read this"
-	var ribbon = document.createElement('div');
-	var ribbonText = document.createElement('div');
-	ribbon.classList.add('ribbon');
-	element.display.appendChild(ribbon);
-	ribbonText.classList.add('txt');
-	ribbonText.innerHTML = "Completed";
-	ribbon.appendChild(ribbonText);
-	}else if (element.read==false){
-	console.log("Didn't read it")
-	var ribbon = element.display.getElementsByClassName("ribbon")
-	element.removeChild("ribbon"[0]);
+	console.log(element.bookID + " " + element.read);	
 	}
-
-}
 
 function addBookToLibrary() {
   const title = document.getElementById("form-title").value;
@@ -95,7 +90,7 @@ for (var i = 0; i < books.length; i++) {
   		<h4 id="test">${book.title}</h4>
   		By ${book.author}</br>
   		Pages: ${book.pages}</p>
-  		<span class="button completed-button" onclick="toggleRead(${book.bookID})">Finished</span>
+  		<span class="button completed-button" onclick="toggleRead(${book.bookID})">Completed</span>
   		<span class="button delete-button" onclick="removeBook(${book.bookID})">🗑️</span>
   		</div>
   	</div>`
