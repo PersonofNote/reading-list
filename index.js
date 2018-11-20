@@ -22,19 +22,6 @@ function Book(title,author,pages,read,id) {
   this.bookID = id;
   this.display = document.createElement('div');
   this.display.classList.add('book');
-  /*
-  this.display = document.createElement('div');
-  this.display.classList.add('book');
-  this.display.innerHTML = `<div class="book-card">
-	   <div class="book-text">
-  		<h4 id="test">${this.title}</h4>
-  		By ${this.author}</br>
-  		Pages: ${this.pages}</p>
-  		<span data="${this.bookID}" read="false" class="button" onclick="toggleRead(this.id)">Finished</span>
-  		<span class="button delete-button" data="" onclick="removeBook(${this.bookID})">🗑️</span>
-  		</div>
-  	</div>`
-  	*/
 }
 
 document.getElementById('submit').addEventListener("click", function() {
@@ -61,9 +48,15 @@ function toggleVisible() {
 
 function toggleRead(id) {
 	var element = books[id]
+  var button =  element.display.getElementsByClassName('completed-button')[0];
 	element.read = element.read == "true" ? "false" : "true";
 	//Right now there's some weirdness here where it flips if you add a new element?
 	element.display.classList.toggle('complete');
+  if (button.innerHTML == "Completed"){
+    button.innerHTML = "Re-read";
+    }else{
+      button.innerHTML = "Completed";
+    }
 	console.log(element.bookID + " " + element.read);	
 	}
 

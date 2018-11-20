@@ -87,6 +87,13 @@ h1 {
 	text-align:center;
 }
 
+.complete::before {
+	padding-left: 1em;
+	content: "FINISHED";
+	color: red;
+
+}
+
 .complete .book-text {
 	/* Fix this, right now it's hard to read */
 	/*background: #eedc19 -webkit-gradient(linear, 100% 0, 0 0, from(#eedc19), color-stop(0.5, white), to(#eedc19));*/
@@ -95,6 +102,7 @@ h1 {
   	background-repeat: no-repeat;
   	-webkit-background-clip: text;
   	-webkit-text-fill-color: transparent;
+  	margin-top:1em;
 }
 
 .complete:hover .book-text {
