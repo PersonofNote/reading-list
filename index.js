@@ -1,8 +1,6 @@
 /*
 TODO:
 -Try an animation that shrinks the button slightly when you press it, then snaps it back up.
--Try something a little more obvious to mark a book as "read." Not sure I'm liking the ribbon implementation at the moment,
-it's a little hacky and flat.
 -Consider doing a first-letter to upcase (except article and small words, of course) pass on the titles
 -Consider adding a property to the add-new button where if you add a new book while the
 	form is displaying, it adds the book as though it were the submit button. (I get tripped
@@ -47,15 +45,23 @@ function toggleVisible() {
 }
 
 function toggleRead(id) {
-	var element = books[id]
-  var button =  element.display.getElementsByClassName('completed-button')[0];
+	var element = books[id];
+  var div = books[id].display;
+  var finished = div.getElementsByClassName('finished');
+  var button = element.display.getElementsByClassName('completed-button')[0];
 	element.read = element.read == "true" ? "false" : "true";
-	//Right now there's some weirdness here where it flips if you add a new element?
 	element.display.classList.toggle('complete');
   if (button.innerHTML == "Completed"){
     button.innerHTML = "Re-read";
-    }else{
+    if (!finished){ finished = document.createElement('div');
+    finished.className = "finished-banner";
+    finished.id = "finished" + books[id];
+    finished.innerText = "Finished";
+    div.appendChild(finished);
+    }
+        }else{
       button.innerHTML = "Completed";
+      div.removeChild(div.finished);
     }
 	console.log(element.bookID + " " + element.read);	
 	}
@@ -80,7 +86,7 @@ for (var i = 0; i < books.length; i++) {
   book.bookID = books.indexOf(book);
   book.display.innerHTML = `<div class="book-card">
 	   <div class="book-text">
-  		<h4 id="test">${book.title}</h4>
+  		<h4 class="title">${book.title}</h4>
   		By ${book.author}</br>
   		Pages: ${book.pages}</p>
   		<span class="button completed-button" onclick="toggleRead(${book.bookID})">Completed</span>
